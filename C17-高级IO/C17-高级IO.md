@@ -12,6 +12,31 @@
 
 ## IO多路转接
 
+`select();`
+
+```c
+#include <sys/select.h>
+
+int select(int nfds, fd_set *readfds, fd_set *writefds,
+           fd_set *exceptfds, struct timeval *timeout);
+/**
+ *  nfds：      当前最大的文件描述符+1
+ *  readfds：   读集
+ *  writefds：  写集
+ *  exceptfds： 异常集
+ *  timeval：   超时时间（不超时设置的话select会阻塞）
+ */
+
+void FD_CLR(int fd, fd_set *set);
+int  FD_ISSET(int fd, fd_set *set);
+void FD_SET(int fd, fd_set *set);
+void FD_ZERO(fd_set *set);
+```
+
+`poll();`
+
+`epoll();`
+
 ## 其他读写函数
 
 ## 存储映射IO
