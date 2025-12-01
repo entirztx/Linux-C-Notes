@@ -44,9 +44,7 @@ int main(int argc, char **argv)   // 查询法
     pthread_mutex_lock(&mut_num);
     while (num != 0)
     {
-        pthread_mutex_unlock(&mut_num);
-        sched_yield( );
-        pthread_mutex_lock(&mut_num);
+        pthread_cond_wait(&cond_num, &mut_num);
     }
     num = -1;
     pthread_cond_broadcast(&cond_num);
@@ -71,7 +69,7 @@ static void *thr_prime(void *p)
         pthread_mutex_lock(&mut_num);
         while (num == 0)
         {
-            pthread_condi_wait(&cond_num, &cond_num);
+            pthread_cond_wait(&cond_num, &mut_num);
         }
         if (num == -1)
         {
@@ -80,7 +78,7 @@ static void *thr_prime(void *p)
         }
         i   = num;
         num = 0;
-        pthrread_cond_broadcast(&cond_num);
+        pthread_cond_broadcast(&cond_num);
         pthread_mutex_unlock(&mut_num);
 
         mark = 1;
