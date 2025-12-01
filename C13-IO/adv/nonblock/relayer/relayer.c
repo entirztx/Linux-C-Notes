@@ -117,10 +117,10 @@ static void *thr_relayer(void *p)
         {
             if (rel_job[i] != NULL)
             {
-                if (rel_job[1]->job_state == STATE_RUNNING)
+                if (rel_job[i]->job_state == STATE_RUNNING)
                 {
-                    fsm_driver(&rel_job[1]->fsm12);
-                    fsm_driver(&rel_job[1]->fsm21);
+                    fsm_driver(&rel_job[i]->fsm12);
+                    fsm_driver(&rel_job[i]->fsm21);
                     if (rel_job[i]->fsm12.state == STATE_T &&
                         rel_job[i]->fsm21.state == STATE_T)
                         rel_job[i]->job_state = STATE_OVER;
