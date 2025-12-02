@@ -80,7 +80,35 @@ struct epoll_event {
 
 ## 其他读写函数
 
+`readv()`、`writev()`
+
+```c
+//  read or write data into multiple buffers
+#include <sys/uio.h>
+
+ssize_t readv(int fd, const struct iovec *iov, int iovcnt);
+
+ssize_t writev(int fd, const struct iovec *iov, int iovcnt);
+
+struct iovec {
+    void  *iov_base;    /* Starting address */
+    size_t iov_len;     /* Number of bytes to transfer */
+};
+```
+
 ## 存储映射IO
+
+`mmap()`
+
+```c
+//  mmap, munmap - map or unmap files or devices into memory
+#include <sys/mman.h>
+
+void *mmap(void *addr, size_t length, int prot, int flags,
+           int fd, off_t offset);
+
+int munmap(void *addr, size_t length);
+```
 
 ## 文件锁
 
