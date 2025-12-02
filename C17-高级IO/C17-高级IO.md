@@ -15,6 +15,7 @@
 `select();`
 
 ```c
+//  select, pselect, FD_CLR, FD_ISSET, FD_SET, FD_ZERO - synchronous I/O multiplexing
 #include <sys/select.h>
 
 int select(int nfds, fd_set *readfds, fd_set *writefds,
@@ -34,6 +35,19 @@ void FD_ZERO(fd_set *set);
 ```
 
 `poll();`
+
+```c
+//  poll, ppoll - wait for some event on a file descriptor
+#include <poll.h>
+
+int poll(struct pollfd *fds, nfds_t nfds, int timeout);
+
+struct pollfd {
+    int   fd;         /* file descriptor */
+    short events;     /* requested events */
+    short revents;    /* returned events */
+};
+```
 
 `epoll();`
 
