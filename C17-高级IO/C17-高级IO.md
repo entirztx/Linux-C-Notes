@@ -112,3 +112,15 @@ int munmap(void *addr, size_t length);
 
 ## 文件锁
 
+`fcntl()`;
+
+`lockf()`;
+
+```c
+//  lockf - apply, test or remove a POSIX lock on an open file
+#include <unistd.h>
+
+int lockf(int fd, int cmd, off_t len);
+```
+
+`flock()`;
